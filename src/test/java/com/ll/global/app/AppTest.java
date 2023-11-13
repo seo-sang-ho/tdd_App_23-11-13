@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class AppTest {
 
     private String run(String cmd){
-        Scanner scanner = TestUtil.genScanner(cmd.stripIndent().trim());
+        Scanner scanner = TestUtil.genScanner(cmd.stripIndent().trim() + "\n종료");
 
         ByteArrayOutputStream byteArrayOutputStream = TestUtil.setOutToByteArray();
 
@@ -28,8 +28,7 @@ public class AppTest {
     @Test
     @DisplayName("프로그램 시작 시 == 명언 == 출력")
     void t1(){
-        String out = run("""
-                종료""");
+        String out = run("");
 
         assertThat(out).contains("== 명언 앱 ==");
     }
@@ -37,9 +36,7 @@ public class AppTest {
     @Test
     @DisplayName("종료")
     void t2(){
-        String run = run("""
-                종료
-                """);
+        String run = run("");
 
     }
 
@@ -50,7 +47,6 @@ public class AppTest {
                 등록
                 현재를 사랑하라.
                 작자미상
-                종료
                 """);
 
         assertThat(out)
@@ -65,7 +61,6 @@ public class AppTest {
                 등록
                 현재를 사랑하라.
                 작자미상
-                종료
                 """);
 
         assertThat(out)
@@ -81,7 +76,6 @@ public class AppTest {
                 등록
                 현재를 사랑하라.
                 작자미상
-                종료
                 """);
 
         assertThat(out2)
