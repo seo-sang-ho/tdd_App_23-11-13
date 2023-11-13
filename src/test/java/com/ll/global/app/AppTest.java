@@ -61,8 +61,8 @@ public class AppTest {
         TestUtil.clearSetOutToByteArray(byteArrayOutputStream);
 
         Assertions.assertThat(out)
-                .contains("명언 : ")
-                .contains("작가 : ");
+                .contains("명언 :")
+                .contains("작가 :");
 
     }
 }
