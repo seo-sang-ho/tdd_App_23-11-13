@@ -22,11 +22,17 @@ public class App {
         while (true) {
             final String cmd = scanner.nextLine().trim();
 
-            switch (cmd) {
-                case "삭제?id=1" -> {
+            final String[] cmdBits = cmd.split("\\?", 2);
+            final String action = cmdBits[0].trim();
+            final String queryString = cmdBits.length == 2 ? cmdBits[1].trim() : "";
+
+            switch (action) {
+                case "삭제" -> {
+                    final long id  = Long.parseLong(queryString.replace("id=", ""));
+
                     quotations
-                            .removeIf(quotation -> quotation.getId() == 1);
-                    System.out.println("1번 명언이 삭제되었습니다.");
+                            .removeIf(quotation -> quotation.getId() == id);
+                    System.out.println("%d번 명언이 삭제되었습니다.".formatted(id));
                 }
                 case "등록" -> {
                     System.out.print("명언 : ");
