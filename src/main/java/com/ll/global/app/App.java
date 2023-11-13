@@ -27,6 +27,7 @@ public class App {
 
             System.out.println("%d번 명언이 등록되었습니다.".formatted(id));
         }
+
         else if(cmd.equals("종료")) return;
         }
     }
