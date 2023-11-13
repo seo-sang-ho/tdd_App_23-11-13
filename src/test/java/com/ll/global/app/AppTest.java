@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayOutputStream;
 import java.util.Scanner;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class AppTest {
 
     private String run(String cmd){
@@ -29,7 +31,7 @@ public class AppTest {
         String out = run("""
                 종료""");
 
-        Assertions.assertThat(out).contains("== 명언 앱 ==");
+        assertThat(out).contains("== 명언 앱 ==");
     }
 
     @Test
@@ -51,7 +53,7 @@ public class AppTest {
                 종료
                 """);
 
-        Assertions.assertThat(out)
+        assertThat(out)
                 .contains("명언 :")
                 .contains("작가 :");
     }
@@ -66,9 +68,26 @@ public class AppTest {
                 종료
                 """);
 
-        Assertions.assertThat(out)
+        assertThat(out)
                 .contains("명언 :")
                 .contains("작가 :")
-                .contains("1번 명언이 등록되었습니다.");
+                .contains("1번 명언이 등록되었습니다.")
+                .doesNotContain("2번 명언이 등록되었습니다.");
+
+        String out2 = run("""
+                등록
+                현재를 사랑하라.
+                작자미상
+                등록
+                현재를 사랑하라.
+                작자미상
+                종료
+                """);
+
+        assertThat(out2)
+                .contains("1번 명언이 등록되었습니다.")
+                .contains("2번 명언이 등록되었습니다.")
+                .doesNotContain("3번 명언이 등록되었습니다.");
     }
+
 }
